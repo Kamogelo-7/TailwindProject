@@ -1,6 +1,30 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-limegreen: hsl(120, 97%, 42%);
+  --color-primary: #ff6363;
+
+  --color-secondary-100: #e2e2d5;
+  --color-secondary-200: #888883;
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+}
 
 .mesh {
   background-color: hsla(0, 100%, 50%, 1);
@@ -17,7 +41,7 @@
     radial-gradient(at 0% 0%, hsla(343, 100%, 76%, 1) 0px, transparent 50%);
 }
 .card {
-  @apply relative overflow-hidden duration-500 bg-black rounded shadow-lg shadow-black hover:scale-110 hover:shadow-cyan-400;
+  @apply relative overflow-hidden duration-500 bg-black rounded-sm shadow-lg shadow-black hover:scale-110 hover:shadow-cyan-400;
 }
 
 .badge {
